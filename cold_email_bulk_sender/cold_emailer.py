@@ -10,8 +10,9 @@ from email.utils import formataddr
 from hr_data_extracter import get_hr_details
 
 
-# Step 1: Create logs folder in current directory if it doesn't exist
-log_dir = os.path.join(os.getcwd(), "logs")
+# Step 1: Create logs folder in the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+log_dir = os.path.join(script_dir, "logs")
 os.makedirs(log_dir, exist_ok=True)
 
 # Step 2: Create a timestamped log filename in AM/PM format
@@ -63,15 +64,17 @@ resume_path = os.path.join(os.path.dirname(__file__), RESUME_NAME)
 
 # List of demo emails
 demo_emails = [
-    {'email': 'dhruvkumar11170@gmail.com', 'first_name': 'Dhruv', 'company': 'Razorpay'},
-    {'email': 'shravankumar11169@gmail.com', 'first_name': 'Shravan', 'company': 'gmail'},
-    {'email': 'dhruv.kumar@razorpay.com', 'first_name': 'Dhruv', 'company': 'Razorpay'},
-    {'email': 'shravankraiml2025@gmail.com', 'first_name': 'Shravan', 'company': 'OXFORD COLLEGE OF ENGINEERING AND TECHNOLOGY'},
-    {'email': 'neokre6922@gmail.com', 'first_name': 'Neokre', 'company': 'Riot Games'},
+    # {'email': 'dhruvkumar11170@gmail.com', 'first_name': 'Dhruv', 'company': 'Razorpay'},
+    # {'email': 'shravankumar11169@gmail.com', 'first_name': 'Shravan', 'company': 'gmail'},
+    # {'email': 'dhruv.kumar@razorpay.com', 'first_name': 'Dhruv', 'company': 'Razorpay'},
+    # {'email': 'shravankraiml2025@gmail.com', 'first_name': 'Shravan', 'company': 'OXFORD COLLEGE OF ENGINEERING AND TECHNOLOGY'},
+    # {'email': 'neokre6922@gmail.com', 'first_name': 'Neokre', 'company': 'Riot Games'},
     # {'email': 'programmingdhruv@gmail.com', 'first_name': 'Dhruv', 'company': 'gmail'},
     # {'email': 'vikramadityajain2001@gmail.com', 'first_name': 'Vikramaditya', 'company': 'gmail'},
     # {'email': 'Vikramaditya@stockal.com', 'first_name': 'Vikramaditya', 'company': 'stockal'},
-    # {'email': 'eashagoswami31@gmail.com', 'first_name': 'Esha', 'company': 'Vedantu'}
+    # {'email': 'eashagoswami31@gmail.com', 'first_name': 'Esha', 'company': 'Vedantu'},
+    {'email': 'pandeyprayagdutt@gmail.com', 'first_name': 'Prayag', 'company': 'Innodata'}
+    
 ]
 
 hr_emails = get_hr_details(FILE_PATH)
@@ -189,10 +192,10 @@ def send_bulk_emails(email_list, save_file_name="default_list"):
                 logger.info(f"🗑️ Deleted resume save file: {save_file_name}")
             
             # Notify user about successful completion
-            logging.info("✅ All emails sent successfully! with total emails sent: " + str(total_sent))
+            logging.info("✅ All emails sent successfully!")
 
             notification.notify(
-                title="✅ All Emails Sent",
+                title="✅ All Emails Sent Successfully!",
                 message=f"{total_sent} emails sent successfully!",
                 timeout=2
             )
@@ -232,7 +235,7 @@ def send_email(smtp, resume_data, to_email, first_name, company):
 
 
 # Sending emails to demo for debugging
-# send_bulk_emails(demo_emails,"demo_emails")
+send_bulk_emails(demo_emails,"demo_emails")
 
-# # Sending emails to HRs from the Excel file
-send_bulk_emails(hr_emails,"hr_emails")
+# Sending emails to HRs from the Excel file
+# send_bulk_emails(hr_emails,"hr_emails")
