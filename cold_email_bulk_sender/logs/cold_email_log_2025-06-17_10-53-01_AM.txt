@@ -1,0 +1,7 @@
+2025-06-17 10:53:01,172 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:53:02,135 - INFO - ✅ SMTP connection established and logged in successfully.
+2025-06-17 10:53:04,039 - INFO - 1. ✅ Email sent to dhruvkumar11170@gmail.com at company Razorpay!
+2025-06-17 10:53:06,076 - INFO - 2. ✅ Email sent to shravankumar11169@gmail.com at company gmail!
+2025-06-17 10:53:08,023 - INFO - 3. ✅ Email sent to dhruv.kumar@razorpay.com at company Razorpay!
+2025-06-17 10:53:08,024 - ERROR - ❌ Failed to send email to shravankraiml2025@gmail.com at index 3: Demo email limit reached. Please remove demo emails from the list.
+2025-06-17 10:53:08,035 - WARNING - ⚠️ Resume state saved at index 3 in c:\Users\user\Desktop\DIY projects\cold_email_bulk_sender\demo_emails_savefile.json

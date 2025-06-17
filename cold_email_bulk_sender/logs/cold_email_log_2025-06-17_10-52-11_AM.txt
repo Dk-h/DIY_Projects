@@ -1,0 +1,5 @@
+2025-06-17 10:52:11,570 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:52:11,698 - INFO - ⏯️ Resuming from index 3...
+2025-06-17 10:52:12,564 - INFO - ✅ SMTP connection established and logged in successfully.
+2025-06-17 10:52:14,484 - INFO - 4. ✅ Email sent to shravankraiml2025@gmail.com at company OXFORD COLLEGE OF ENGINEERING AND TECHNOLOGY!
+2025-06-17 10:52:16,222 - INFO - 5. ✅ Email sent to neokre6922@gmail.com at company Riot Games!

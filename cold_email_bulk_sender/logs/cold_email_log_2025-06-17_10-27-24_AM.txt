@@ -1,0 +1,3 @@
+2025-06-17 10:27:24,911 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:27:26,652 - INFO - ✅ SMTP connection established and logged in successfully.
+2025-06-17 10:27:28,426 - INFO - 1. ✅ Email sent to eashagoswami31@gmail.com at company Vedantu!

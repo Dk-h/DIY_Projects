@@ -1,0 +1,8 @@
+2025-06-17 10:57:12,280 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:57:12,404 - INFO - ⏯️ Resuming from index 3 with HR details: {'email': 'dhruv.kumar@razorpay.com', 'first_name': 'Dhruv', 'company': 'Razorpay'}
+2025-06-17 10:57:13,240 - INFO - ✅ SMTP connection established and logged in successfully.
+2025-06-17 10:57:15,170 - INFO - 4. ✅ Email sent to shravankraiml2025@gmail.com at company OXFORD COLLEGE OF ENGINEERING AND TECHNOLOGY!
+2025-06-17 10:57:17,058 - INFO - 5. ✅ Email sent to neokre6922@gmail.com at company Riot Games!
+2025-06-17 10:57:17,068 - INFO - 🎉 All 2 emails sent successfully!
+2025-06-17 10:57:17,069 - INFO - 🗑️ Deleted resume save file: c:\Users\user\Desktop\DIY projects\cold_email_bulk_sender\demo_emails_savefile.json
+2025-06-17 10:57:17,070 - INFO - ✅ All emails sent successfully! with total emails sent: 2

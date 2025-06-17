@@ -1,0 +1,3 @@
+2025-06-17 10:57:39,230 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:57:39,357 - INFO - ⏯️ Resuming from index 148 with HR details: {'email': 'sandeep.ghatke@zoominfo.com', 'first_name': 'Sandeep', 'company': 'ZoomInfo'}
+2025-06-17 10:57:40,196 - INFO - ✅ SMTP connection established and logged in successfully.

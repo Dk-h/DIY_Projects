@@ -1,0 +1,4 @@
+2025-06-17 10:25:36,898 - INFO - 🚀 Cold Email Bulk Sender started
+2025-06-17 10:25:38,707 - INFO - ✅ SMTP connection established and logged in successfully.
+2025-06-17 10:25:40,958 - INFO - 1. ✅ Email sent to dhruvkumar11170@gmail.com at company Razorpay!
+2025-06-17 10:25:42,841 - INFO - 2. ✅ Email sent to eshagoswami31@gmail.com at company Vedantu!
