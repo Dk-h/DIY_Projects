@@ -18,99 +18,46 @@ def simulate_typing_on_esc(text, delay=0.05):
     keyboard.write(text, delay)
     print("\nTyping complete.")
 
-def remove_indentation(code_block: str) -> str:
-    """
-    Removes all leading spaces and tabs from each line of a multi-line string.
-
-    Args:
-        code_block (str): The indented code or paragraph.
-
-    Returns:
-        str: The unindented version of the code.
-    """
-    lines = code_block.splitlines()
-    cleaned_lines = [line.lstrip() for line in lines]
-    return '\n'.join(cleaned_lines)
 
 # Your indented paragraph/code block
 paragraph = '''
 
-db.Customers.insertMany([
-  {
-    name: "Rahul Sharma",
-    age: 35,
-    purchases: ["Laptop", "Phone"]
-  },
-  {
-    name: "Vikram Seth",
-    age: 28,
-    purchases: ["Tablet", "Headphones"]
-  },
-  {
-    name: "Anjali Gowda",
-    age: 40,
-    purchases: ["Camera", "Tripod"]
-  }
-]);
+long getPages(const vector<int> pages, const vector<int> threshold) {
+int n = pages.size();
+vector<pair<int, int>> printers;
 
-db.Customers.find({ purchases: "Laptop" });
+for (int i = 0; i < n; ++i) {
+printers.emplace_back(threshold[i], pages[i]);
+}
 
+// Sort printers by increasing threshold
+sort(printers.begin(), printers.end());
+
+// Min heap to keep selected printers' pages
+priority_queue<int, vector<int>, greater<int>> minHeap;
+
+for (auto& [thresh, page] : printers) {
+if ((int)minHeap.size() < thresh) {
+minHeap.push(page);
+} else if (!minHeap.empty() && minHeap.top() < page) {
+minHeap.pop();
+minHeap.push(page);
+}
+}
+
+// Sum up pages using long long
+long long total = 0;
+while (!minHeap.empty()) {
+total += minHeap.top();
+minHeap.pop();
+}
+
+return total;
+}
 
 
 '''
-# Define the custom exception
-class CustomError(Exception):
-    pass
 
-def process_input(data):
-    try:
-        if not data:
-            raise CustomError("Error: Empty input provided.")
-        elif len(data) > 255:
-            raise CustomError("Error: Input exceeds maximum length.")
-        elif any(char.isdigit() for char in data):
-            raise CustomError("Error: Input contains invalid characters.")
-        else:
-            return "Input processed successfully."
-    except CustomError as e:
-        return str(e)
-    finally:
-        print("Program execution completed.")
-
-# Example usage:
-print(process_input(""))             # Error: Empty input provided.
-print(process_input("a" * 256))      # Error: Input exceeds maximum length.
-print(process_input("hello123"))     # Error: Input contains invalid characters.
-print(process_input("Hello World"))  # Input processed successfully.
-'''
-
-Remove indentation before typing
-unindented_paragraph = remove_indentation(paragraph)
-
-Start typing after Esc key
-simulate_typing_on_esc(unindented_paragraph, delay=0.01)
-   if not data:
-            raise CustomError("Error: Empty input provided.")
-        elif len(data) > 255:
-            raise CustomError("Error: Input exceeds maximum length.")
-        elif any(char.isdigit() for char in data):
-            raise CustomError("Error: Input contains invalid characters.")
-        else:
-            return "Input processed successfully."
-    except CustomError as e:
-        return str(e)
-    finally:
-        print("Program execution completed.")
-
-# Example usage:
-print(process_input(""))             # Error: Empty input provided.
-print(process_input("a" * 256))      # Error: Input exceeds maximum length.
-print(process_input("hello123"))     # Error: Input contains invalid characters.
-print(process_input("Hello World"))  # Input processed successfully.
-'''
-
-# Remove indentation before typing
-unindented_paragraph = remove_indentation(paragraph)
 
 # Start typing after Esc key
-simulate_typing_on_esc(unindented_paragraph, delay=0.01)
+simulate_typing_on_esc(paragraph, delay=0.01)
