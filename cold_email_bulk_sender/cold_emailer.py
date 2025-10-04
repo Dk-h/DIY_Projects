@@ -4,10 +4,12 @@ import json
 import smtplib
 import logging
 from datetime import datetime
-from plyer import notification
+from plyer import facades
 from email.message import EmailMessage
 from email.utils import formataddr
 from hr_data_extracter import get_hr_details
+
+notifier = facades.Notification()   
 
 # ============================
 # CONFIGURATION SECTION
@@ -141,7 +143,7 @@ def send_bulk_emails(email_list, resume_path, save_file_prefix="default_list"):
                     with open(save_file_name, "w") as f:
                         json.dump({"position": i+1, "failed_at": hr}, f, indent=4)
                     logger.warning(f"⚠️ Resume state saved at index {i+1} in {save_file_name}")
-                    notification.notify(
+                    notifier.notify(
                         title="❌ Email Sending Failed",
                         message=f"Failed at {hr['email']} – resume saved",
                         timeout=2
@@ -156,7 +158,7 @@ def send_bulk_emails(email_list, resume_path, save_file_prefix="default_list"):
                 os.remove(save_file_name)
                 logger.info(f"🗑️ Deleted resume save file: {save_file_name}")
 
-            notification.notify(
+            notifier.notify(
                 title="✅ All Emails Sent Successfully!",
                 message=f"{total_sent} emails sent successfully!",
                 timeout=2
@@ -164,7 +166,7 @@ def send_bulk_emails(email_list, resume_path, save_file_prefix="default_list"):
 
     except Exception as e:
         logger.error(f"❌ SMTP connection or login failed: {e}")
-        notification.notify(
+        notifier.notify(
             title="❌ SMTP Login Failed",
             message="Could not connect or login to Gmail",
             timeout=2
