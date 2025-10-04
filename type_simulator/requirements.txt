@@ -1,0 +1,3 @@
+# Only standard library is used, but if you want to ensure json is present:
+# (json, sys, time are all standard in Python 3)
+keyboard

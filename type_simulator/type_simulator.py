@@ -1,63 +1,41 @@
-import keyboard
+import json
 import time
 
-def simulate_typing_on_esc(text, delay=0.05):
+def load_text_from_json(filename="typewriter_text.json"):
     """
-    Waits for the user to press 'Esc', then simulates typing the given text.
+    Load the text content for the typewriter effect from a JSON file.
 
     Args:
-        text (str): Text to type.
-        delay (float): Delay between each keystroke.
+        filename (str): The name of the JSON file containing the text.
+
+    Returns:
+        str: The text to display with the typewriter effect.
     """
-    print("Press ESC to start typing...")
-    keyboard.wait('esc')  # Wait for the 'Esc' key
+    with open(filename, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get("text", "")
 
-    print("Typing will start in 3 seconds... Switch to the target window.")
-    time.sleep(3)
+def typewriter_effect(text, delay=0.05):
+    """
+    Prints the given text to the terminal with a typewriter animation.
 
-    keyboard.write(text, delay)
-    print("\nTyping complete.")
+    Args:
+        text (str): The text to display.
+        delay (float): Time (in seconds) to wait between each character.
+    """
+    for char in text:
+        print(char, end='', flush=True)  # Print character without newline and flush output
+        time.sleep(delay)                # Pause to create typewriter effect
+    print()  # Move to the next line after the text is printed
 
+def main():
+    """
+    Main function to run the typewriter effect.
+    Loads the text from a JSON file and displays it with animation.
+    """
+    text = load_text_from_json()  # Get the text from JSON file
+    typewriter_effect(text)       # Display with typewriter effect
 
-# Your indented paragraph/code block
-paragraph = '''
-
-long getPages(const vector<int> pages, const vector<int> threshold) {
-int n = pages.size();
-vector<pair<int, int>> printers;
-
-for (int i = 0; i < n; ++i) {
-printers.emplace_back(threshold[i], pages[i]);
-}
-
-// Sort printers by increasing threshold
-sort(printers.begin(), printers.end());
-
-// Min heap to keep selected printers' pages
-priority_queue<int, vector<int>, greater<int>> minHeap;
-
-for (auto& [thresh, page] : printers) {
-if ((int)minHeap.size() < thresh) {
-minHeap.push(page);
-} else if (!minHeap.empty() && minHeap.top() < page) {
-minHeap.pop();
-minHeap.push(page);
-}
-}
-
-// Sum up pages using long long
-long long total = 0;
-while (!minHeap.empty()) {
-total += minHeap.top();
-minHeap.pop();
-}
-
-return total;
-}
-
-
-'''
-
-
-# Start typing after Esc key
-simulate_typing_on_esc(paragraph, delay=0.01)
+if __name__ == "__main__":
+    # Entry point for the script
+    main()
