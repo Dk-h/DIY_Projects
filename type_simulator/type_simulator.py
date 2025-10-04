@@ -1,5 +1,7 @@
 import json
 import time
+import keyboard
+import os
 
 def load_text_from_json(filename="typewriter_text.json"):
     """
@@ -11,30 +13,45 @@ def load_text_from_json(filename="typewriter_text.json"):
     Returns:
         str: The text to display with the typewriter effect.
     """
-    with open(filename, "r", encoding="utf-8") as f:
+    # Get the absolute path to ensure file is found regardless of working directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(script_dir, filename)
+    if not os.path.exists(filepath):
+        print(f"Error: '{filename}' not found in {script_dir}. Please create it with a 'text' field.")
+        exit(1)
+    with open(filepath, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data.get("text", "")
 
-def typewriter_effect(text, delay=0.05):
+def simulate_typing_on_esc(text, delay=0.05):
     """
-    Prints the given text to the terminal with a typewriter animation.
+    Waits for the user to press 'Esc', then simulates typing the given text 
+    into whatever window is currently focused (using the keyboard package).
 
     Args:
-        text (str): The text to display.
-        delay (float): Time (in seconds) to wait between each character.
+        text (str): Text to type.
+        delay (float): Delay between each keystroke.
     """
-    for char in text:
-        print(char, end='', flush=True)  # Print character without newline and flush output
-        time.sleep(delay)                # Pause to create typewriter effect
-    print()  # Move to the next line after the text is printed
+    print("Press ESC to start typing...")
+    keyboard.wait('esc')  # Wait for the 'Esc' key
+
+    print("Typing will start in 3 seconds... Switch to the target window.")
+    # Countdown for user clarity
+    for i in range(3, 0, -1):
+        print(f"Typing in {i}...", end='\r', flush=True)
+        time.sleep(1)
+
+    # Simulate typing into whatever window is currently active
+    keyboard.write(text, delay)
+    print("\nTyping complete.")
 
 def main():
     """
-    Main function to run the typewriter effect.
-    Loads the text from a JSON file and displays it with animation.
+    Main function to run the typewriter effect with simulated typing.
+    Loads the text from a JSON file and types it into the active window after ESC is pressed.
     """
     text = load_text_from_json()  # Get the text from JSON file
-    typewriter_effect(text)       # Display with typewriter effect
+    simulate_typing_on_esc(text, delay=0.01)
 
 if __name__ == "__main__":
     # Entry point for the script
