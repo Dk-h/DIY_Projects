@@ -12,6 +12,8 @@ This Python project allows you to send personalized bulk emails (with resume att
 - **Desktop notifications** for success/failure
 - **Logs** are written to both console and a timestamped file in a `logs/` folder
 - **Test mode**: Try with demo emails before sending to real HR contacts
+- **Configuration and sensitive data** are stored in external files (no sensitive info in your codebase)
+- **HTML email template** is stored in an external file for easy editing
 
 ---
 
@@ -41,11 +43,31 @@ This Python project allows you to send personalized bulk emails (with resume att
 4. **Set up your Gmail App Password:**
    - Go to your Google Account > Security > App Passwords.
    - Generate a new password for "Mail".
-   - Replace the `SENDER_EMAIL` and `SENDER_PASSWORD` variables in the script with your email and the generated app password.
+   - Create a file named `credentials.json` in the project directory with the following format:
+     ```json
+     {
+       "SENDER_EMAIL": "your_email@gmail.com",
+       "SENDER_PASSWORD": "your_app_password"
+     }
+     ```
+   - **Important:** Add `credentials.json` to your `.gitignore` file to avoid committing sensitive info.
 
 5. **Configure demo and HR emails:**
    - Edit the `DEMO_EMAILS` list in the script to add your test emails.
    - Make sure your Excel file is referenced correctly in the script.
+
+6. **Create or edit your HTML email template:**
+   - Place your email content in a file named `email_template.html` in the project directory.
+   - You can use placeholders like `{first_name}` and `{company_line}` in your template.  
+     Example:
+     ````html
+     <html>
+       <body>
+         <p>Dear {first_name},</p>
+         <!-- ...rest of your template... -->
+       </body>
+     </html>
+     ````
 
 ---
 
@@ -90,15 +112,19 @@ python bulk_email_sender.py
 
 ## Security Note
 
-- **Never commit your `SENDER_EMAIL` or `SENDER_PASSWORD` to a public repository!**
+- **Never commit your `credentials.json` to a public repository!**
+- `.gitignore` should include:
+  ```
+  credentials.json
+  ```
 - Consider using environment variables or a `.env` file for credentials in production.
 
 ---
 
 ## Customizing
 
-- **Email content:** Edit the `HTML_TEMPLATE` string in the script.
-- **Subject line:** Edit `EMAIL_SUBJECT`.
+- **Email content:** Edit the `email_template.html` file.
+- **Subject line:** Edit `EMAIL_SUBJECT` in your script.
 - **Resume name:** Change `RESUME_NAME` if your file has a different name.
 - **Excel parsing:** The script expects a compatible `get_hr_details()` function and standard columns; adjust if your format differs.
 

@@ -9,15 +9,34 @@ from email.message import EmailMessage
 from email.utils import formataddr
 from hr_data_extracter import get_hr_details
 
-notifier = facades.Notification()   
+notifier = facades.Notification()
+
+
+# ============================
+# CREDENTIALS LOADING
+# ============================
+
+def load_credentials(filename="credentials.json"):
+    """Load email credentials from a JSON file."""
+    with open(filename, "r") as f:
+        creds = json.load(f)
+    return creds  
+
+
+
+def load_html_template(filename="email_template.html"):
+    """Load HTML email template from an external file."""
+    with open(filename, "r", encoding="utf-8") as file:
+        return file.read()
 
 # ============================
 # CONFIGURATION SECTION
 # ============================
 
-# Email credentials (keep secure, do not hardcode in production)
-SENDER_EMAIL = "programmingdhruv@gmail.com"
-SENDER_PASSWORD = "kpjl mjfo ehup mtvn"  # Use an app password if 2FA is enabled
+# Load sender email and password
+creds = load_credentials()
+SENDER_EMAIL = str(creds.get("SENDER_EMAIL"))
+SENDER_PASSWORD = str(creds.get("SENDER_PASSWORD"))
 
 # File names
 HR_EXCEL_FILE = "hr_emails_with_names.xlsx"
@@ -28,46 +47,7 @@ FAILED_EMAILS_FILE = "remaining_hr_emails.json"
 EMAIL_SUBJECT = "Application for SDE Role – Dhruv Kumar"
 
 # HTML Email template for the body content
-HTML_TEMPLATE = """
-<html>
-  <body style="font-family: Arial, sans-serif; font-size: 15px; color: #333;">
-    <p>Dear {first_name},</p>
-    <p>I hope you're doing well.</p>
-    <p>
-      My name is <strong>Dhruv Kumar</strong>, and I’m a <strong>C/C++</strong> and <strong>Python developer</strong> with ~2 years of experience in <strong>product development, system-level programming,</strong> and <strong>automation</strong>.
-      At <strong>Razorpay</strong>, I contributed to launch their <strong>UPI Soundbox</strong>—working on <strong>embedded systems, API integration, CI/CD,</strong> and <strong>performance optimization</strong>.
-    </p>
-    <p>
-      I'm currently exploring <strong>SDE opportunities</strong> and would love to contribute to the innovative work being done {company_line}.
-      If you're hiring or open to referrals, I'd be grateful for a chance to be considered.
-    </p>
-    <p>Thanks for your time, and I’d be happy to connect or share more details!</p>
-    <p>
-      Warm regards,<br>
-      <strong>Dhruv Kumar</strong><br>
-      Bangalore, India<br>
-      +91 91104 89438<br>
-      <a href="https://www.linkedin.com/in/dhruv-kumar-8926631b2/" target="_blank">LinkedIn | </a>
-      <a href="https://github.com/Dk-h" target="_blank">GitHub</a>
-    </p>
-    <hr style="margin: 20px 0;">
-    <h4 style="color: #444;"> Quick Profile Summary:</h4>
-    <ul>
-        <li><strong>Name:</strong> Dhruv Kumar</li>
-        <li><strong>Total Experience:</strong> ~2 years</li>
-        <li><strong>Date of Birth:</strong> 01-10-2001</li>
-        <li><strong>Location:</strong> Bangalore</li>
-        <li><strong>Work Mode:</strong> Comfortable with Hybrid, Remote, and In-Office roles</li>
-        <li><strong>Previous Companies:</strong> Razorpay, ITC</li>
-        <li><strong>Notice Period:</strong> Immediately available to join</li>
-        <li><strong>Primary Skills:</strong> C++, Python, Java(Basics), MySQL, Implementing REST APIs, Embedded Systems</li>
-        <li><strong>Previous Company CTC:</strong> 5.4 LPA</li>
-        <li><strong>Education:</strong> B.Tech in Computer Science and Engineering (Graduated in 2023)</li>
-    </ul>
-    <hr style="margin: 20px 0;">
-  </body>
-</html>
-"""
+HTML_TEMPLATE = load_html_template()  
 
 # List of demo emails for testing
 DEMO_EMAILS = [
