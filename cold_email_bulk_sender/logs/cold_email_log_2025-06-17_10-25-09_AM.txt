@@ -1,3 +1,0 @@
-2025-06-17 10:25:09,833 - INFO - 🚀 Cold Email Bulk Sender started
-2025-06-17 10:25:09,955 - INFO - ⏯️ Resuming from index 6...
-2025-06-17 10:25:11,442 - INFO - ✅ SMTP connection established and logged in successfully.

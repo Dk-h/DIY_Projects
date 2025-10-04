@@ -1,5 +1,0 @@
-2025-06-17 15:01:36,077 - INFO - 🚀 Cold Email Bulk Sender started
-2025-06-17 15:01:37,163 - INFO - ✅ SMTP connection established and logged in successfully.
-2025-06-17 15:01:39,083 - INFO - 1. ✅ Email sent to pandeyprayagdutt@gmail.com at company Innodata!
-2025-06-17 15:01:39,083 - INFO - 🎉 All 1 emails sent successfully!
-2025-06-17 15:01:39,083 - INFO - ✅ All emails sent successfully! with total emails sent: 1

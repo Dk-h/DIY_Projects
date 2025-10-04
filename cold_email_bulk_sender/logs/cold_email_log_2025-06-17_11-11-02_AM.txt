@@ -1,8 +1,0 @@
-2025-06-17 11:11:02,613 - INFO - 🚀 Cold Email Bulk Sender started
-2025-06-17 11:11:02,743 - INFO - ⏯️ Resuming from index 149 with HR details: {'email': 'somaiah.as@zoominfo.com', 'first_name': 'Somaiah', 'company': 'ZoomInfo'}
-2025-06-17 11:11:03,629 - INFO - ✅ SMTP connection established and logged in successfully.
-2025-06-17 11:11:05,804 - INFO - 150. ✅ Email sent to somaiah.as@zoominfo.com at company ZOOMINFO!
-2025-06-17 11:11:08,549 - INFO - 151. ✅ Email sent to pranesh1612@gmail.com at company GMAIL!
-2025-06-17 11:11:10,389 - INFO - 152. ✅ Email sent to veeramanikandan.g@zoominfo.com at company ZOOMINFO!
-2025-06-17 11:11:10,399 - ERROR - ❌ Failed to send email to darragh@noloco.io at index 152: Demo email limit reached. Please remove demo emails from the list.
-2025-06-17 11:11:10,400 - WARNING - ⚠️ Resume state saved at index 152 in c:\Users\user\Desktop\DIY projects\cold_email_bulk_sender\hr_emails_savefile.json
